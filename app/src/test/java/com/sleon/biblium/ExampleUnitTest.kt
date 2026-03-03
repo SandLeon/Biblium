@@ -1,4 +1,4 @@
-package com.example.biblium
+package com.sleon.biblium
 
 import org.junit.Test
 

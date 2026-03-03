@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.biblium"
+    namespace = "com.sleon.biblium"
     compileSdk {
         version = release(36)
     }
