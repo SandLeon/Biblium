@@ -19,7 +19,7 @@ data class UserEntity (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "user_id")
     //val  significa constante
-    val id: Long = 0,
+    val userId: Long = 0,
     val name: String,
     val email: String,
     val passwordHash: String,

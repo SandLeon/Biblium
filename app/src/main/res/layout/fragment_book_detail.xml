@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FDFBEA">
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/ivBackArrow"
+            android:layout_width="53dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/arrow_back"
+            app:layout_constraintBottom_toTopOf="@+id/tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivPhotoLibrary"
+            android:layout_width="150dp"
+            android:layout_height="220dp"
+            android:elevation="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/btnSummary"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="36dp"
+            android:text="@string/resumen"
+            android:textAllCaps="false"
+            android:textColor="#5D4037"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/etReview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivPhotoLibrary" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            android:text="Rey entre Sombras"
+            android:textColor="#444444"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/ivPhotoLibrary"
+            app:layout_constraintTop_toTopOf="@id/ivPhotoLibrary" />
+
+        <TextView
+            android:id="@+id/tvAuthor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="(Melissa Landers)"
+            android:textColor="#666666"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <TextView
+            android:id="@+id/tvStatusBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="#D1D1F0"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:text="Leído"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/tvAuthor"
+            app:layout_constraintTop_toBottomOf="@id/tvAuthor" />
+
+        <EditText
+            android:id="@+id/etReview"
+            android:layout_width="332dp"
+            android:layout_height="354dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="96dp"
+            android:background="#E0E0E0"
+            android:gravity="top|start"
+            android:hint="Escribe aquí tu reseña..."
+            android:inputType="textMultiLine"
+            android:padding="16dp"
+            android:textColor="#444444"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivPhotoLibrary"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#B8C4C0"
+            android:text="Eliminar"
+            android:textColor="#444444"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnSaveDetail"
+            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etReview"
+            app:layout_constraintVertical_bias="0.526" />
+
+        <Button
+            android:id="@+id/btnSaveDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#B8C4C0"
+            android:text="Guardar"
+            android:textColor="#444444"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etReview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Biblium</string>
     <string name="action_settings">Settings</string>
@@ -15,7 +16,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nombre_usuario">Nombre Usuario</string>
     <string name="boton_setting">Abrir ajustes</string>
-    <string name="logoBiblium">logo Biblium</string>
+    <string name="logoBiblium" >logo Biblium</string>
     <string name="hint_buscar">Buscar libro en la biblioteca...</string>
     <string name="btn_filtrar">Filtrar</string>
     <string name="btn_lista">Cambiar a lista</string>

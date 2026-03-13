@@ -11,5 +11,5 @@
     <color name="glow_base">#1AFFFFFF</color>
     <color name="glow_mid">#33FFFFFF</color>
     <color name="glow_core">#4DFFFFFF</color>
-    <color name="background_theme_light">#D5F3ECD1</color>
+    <color name="background_theme_light">#D55F5E5B</color>
 </resources>
