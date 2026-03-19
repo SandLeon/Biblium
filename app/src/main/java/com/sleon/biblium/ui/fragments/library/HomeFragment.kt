@@ -1,5 +1,6 @@
 package com.sleon.biblium.ui.fragments.library
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,44 +23,38 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
-
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Creamos unos libros de prueba (Inventados por ahora)
+        // CORRECCIÓN: Convertimos los recursos Drawable a Bitmap para que coincidan con el modelo Book
         val testBooks = listOf(
-            Book("Rey entre Sombras", "Melissa Landers", "Leído",R.drawable.rey),
-            Book("Arbol de sangre", "Nidia Heras", "Pendiente",R.drawable.arbol),
-            Book("Captive", "Sarah Rivens", "Leyendo",R.drawable.captive)
+            Book("Rey entre Sombras", "Melissa Landers", "Leído", BitmapFactory.decodeResource(resources, R.drawable.rey)),
+            Book("Arbol de sangre", "Nidia Heras", "Pendiente", BitmapFactory.decodeResource(resources, R.drawable.arbol)),
+            Book("Captive", "Sarah Rivens", "Leyendo", BitmapFactory.decodeResource(resources, R.drawable.captive))
         )
 
-        // 2. Preparamos el Adapter con libros de prueba
         val bookAdapter = BookAdapter(testBooks) { book ->
-            println("DEBUG_BIBLIUM: He pulsado el libro ${book.title}")
             val fragmentDetail = BookDetailFragment()
             val bundle = Bundle()
-            bundle.putSerializable("selected_book", book) // Guardamos el libro
+            bundle.putSerializable("selected_book", book)
             fragmentDetail.arguments = bundle
 
             parentFragmentManager.beginTransaction()
-                .setReorderingAllowed(true) // Optimización nativa de animaciones
-                .replace(R.id.main_container,fragmentDetail)
-                .addToBackStack(null) // Esto permite que el botón "Atrás" del móvil funcione
+                .setReorderingAllowed(true)
+                .replace(R.id.main_container, fragmentDetail)
+                .addToBackStack(null)
                 .commit()
         }
 
         binding.rvLibrary.adapter = bookAdapter
 
-        val snapHelper = PagerSnapHelper()//carrusel
+        val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.rvLibrary)
 
-        //Efecto Zoom
         binding.rvLibrary.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -74,7 +69,7 @@ class HomeFragment : Fragment() {
 
     private fun recyclerEffect() {
         val recyclerView = binding.rvLibrary
-        val centerX = recyclerView.width / 2f // El ancho total entre 2
+        val centerX = recyclerView.width / 2f
 
         for (i in 0 until recyclerView.childCount) {
             val child = recyclerView.getChildAt(i)

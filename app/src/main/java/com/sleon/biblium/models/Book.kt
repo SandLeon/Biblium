@@ -1,9 +1,15 @@
 package com.sleon.biblium.models
+
+import android.graphics.Bitmap
 import java.io.Serializable
-// Heredar de Serializable permite que el objeto se convierta en datos binarios
-data class Book (
+
+/**
+ * Clase de datos para la interfaz de usuario (UI).
+ * Representa la información básica de un libro para mostrar en listas o detalles.
+ */
+data class Book(
     val title: String,
     val author: String,
     val status: String,
-    val coverImage: Int? = null
-): Serializable
+    val coverImage: Bitmap? = null
+) : Serializable

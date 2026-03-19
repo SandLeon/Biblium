@@ -12,8 +12,12 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE user_id = :id")
     suspend fun getUserById(id: Long): UserEntity?
 
+    // En el Login para comprobar si el email existe
     @Query("SELECT * FROM users WHERE email = :email LIMIT 1")
     suspend fun getUserByEmail(email: String): UserEntity?
+
+    @Update
+    suspend fun updateUser(user: UserEntity)
 
     @Delete
     suspend fun deleteUser(user: UserEntity)

@@ -1,60 +1,73 @@
 package com.sleon.biblium.ui.fragments.library
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.sleon.biblium.BibliumApplication
 import com.sleon.biblium.R
+import com.sleon.biblium.adapters.BookAdapter
+import com.sleon.biblium.databinding.FragmentLibraryBinding
+import com.sleon.biblium.ui.viewmodels.LibraryViewModel
+import com.sleon.biblium.ui.viewmodels.LibraryViewModelFactory
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [LibraryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class LibraryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var _binding: FragmentLibraryBinding? = null
+    private val binding get() = _binding!!
+
+    private val libraryViewModel: LibraryViewModel by viewModels {
+        LibraryViewModelFactory((requireActivity().application as BibliumApplication).bookRepository)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_library, container, false)
+    ): View {
+        _binding = FragmentLibraryBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LibraryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LibraryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // 1. Configurar RecyclerView
+        binding.rvFullLibrary.layoutManager = LinearLayoutManager(requireContext())
+
+        // 2. Observar los libros del ViewModel
+        lifecycleScope.launch {
+            libraryViewModel.books.collect { bookList ->
+                val adapter = BookAdapter(bookList) { selectedBook ->
+                    val fragmentDetail = BookDetailFragment()
+                    val bundle = Bundle()
+                    bundle.putSerializable("selected_book", selectedBook)
+                    fragmentDetail.arguments = bundle
+
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.main_container, fragmentDetail)
+                        .addToBackStack(null)
+                        .commit()
                 }
+                binding.rvFullLibrary.adapter = adapter
             }
+        }
+
+        // 3. Acción del botón añadir (por ahora solo para pruebas)
+        binding.fabAddBook.setOnClickListener {
+            // Aquí navegarías al fragmento de "Añadir Libro"
+        }
+
+        // 4. Cargar datos (Usamos un ID de prueba 1L hasta tener el login conectado)
+        libraryViewModel.fetchBooks(1L)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

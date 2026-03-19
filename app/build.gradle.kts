@@ -42,21 +42,21 @@ android {
 }
 
 dependencies {
-    // Librerías base (mejor usar las de tu catálogo 'libs')
+    // Librerías base
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
 
-    // NAVEGACIÓN (He quitado las duplicadas, deja solo estas)
+    // NAVEGACIÓN
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
     // ROOM (Base de Datos) - Versión 2.7.0 es más estable para SDK 36
     val room_version = "2.7.0"
-    implementation("androidx.room:room-runtime:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    ksp("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-runtime:$room_version") //motor de BD
+    implementation("androidx.room:room-ktx:$room_version")//usar Room con Kotlin
+    ksp("androidx.room:room-compiler:$room_version")//Traductor
 
     // CICLO DE VIDA
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
