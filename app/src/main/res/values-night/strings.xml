@@ -22,4 +22,16 @@
     <string name="btn_lista">Cambiar a lista</string>
     <string name="a_adir_libro">Añadir libro</string>
     <string name="resumen">resumen</string>
+    <string name="name">Name</string>
+    <string name="registrar">Registrar</string>
+    <string name="rese_a">Reseña</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Guardar</string>
+    <string name="autor">Autor</string>
+    <string name="t_tulo">Título</string>
+    <string name="toca_para_a_adir_portada">Toca para añadir portada</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="email">email</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="eliminar">Eliminar</string>
 </resources>

@@ -18,6 +18,10 @@ interface BookDao {
     @Delete
     suspend fun deleteBook(book: BookEntity)
 
+    // Nuevo método para borrar por ID directamente
+    @Query("DELETE FROM books WHERE book_id = :bookId")
+    suspend fun deleteBookById(bookId: Long)
+
     @Query("SELECT * FROM books WHERE book_id = :bookId")
     suspend fun getBookById(bookId: Long): BookEntity?
 }

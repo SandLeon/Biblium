@@ -73,17 +73,16 @@
             app:layout_constraintStart_toStartOf="@id/tvTitle"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-        <TextView
-            android:id="@+id/tvStatusBadge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:background="#D1D1F0"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="4dp"
-            android:text="Leído"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@id/tvAuthor"
+
+        <Spinner
+            android:id="@+id/spnStatusDetail"
+            android:layout_width="147dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.608"
+            app:layout_constraintStart_toEndOf="@+id/ivPhotoLibrary"
             app:layout_constraintTop_toBottomOf="@id/tvAuthor" />
 
         <EditText

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivBookMainList"
+            android:layout_width="60dp"
+            android:layout_height="90dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedCorners"
+            tools:background="#EEEEEE" />
+
+        <TextView
+            android:id="@+id/tvBookTitleList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="#2C3E50"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivBookMainList"
+            app:layout_constraintTop_toTopOf="@id/ivBookMainList"
+            tools:text="Título del Libro" />
+
+        <TextView
+            android:id="@+id/tvBookAuthorList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="#607D8B"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvBookTitleList"
+            app:layout_constraintTop_toBottomOf="@id/tvBookTitleList"
+            tools:text="Autor del Libro" />
+
+        <TextView
+            android:id="@+id/tvBookStatusList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_search_bar"
+            android:backgroundTint="#D1D9E6"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:textColor="#455A64"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@id/tvBookAuthorList"
+            app:layout_constraintTop_toBottomOf="@id/tvBookAuthorList"
+            tools:text="Leído" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

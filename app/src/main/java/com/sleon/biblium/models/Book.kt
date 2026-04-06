@@ -8,8 +8,10 @@ import java.io.Serializable
  * Representa la información básica de un libro para mostrar en listas o detalles.
  */
 data class Book(
+    val id: Long = 0,
     val title: String,
     val author: String,
     val status: String,
-    val coverImage: Bitmap? = null
+    val coverImage: Bitmap? = null,
+    val review: String = "" // Añadido campo review
 ) : Serializable

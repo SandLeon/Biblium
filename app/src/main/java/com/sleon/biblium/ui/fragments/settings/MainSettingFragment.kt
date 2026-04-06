@@ -1,60 +1,82 @@
 package com.sleon.biblium.ui.fragments.settings
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.sleon.biblium.BibliumApplication
 import com.sleon.biblium.R
+import com.sleon.biblium.databinding.FragmentMainSettingBinding
+import com.sleon.biblium.ui.fragments.auth.LoginFragment
+import com.sleon.biblium.ui.viewmodels.SettingViewModel
+import com.sleon.biblium.ui.viewmodels.SettingViewModelFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MainSettingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MainSettingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var _binding: FragmentMainSettingBinding? = null
+    private val binding get() = _binding!!
+
+    private val settingViewModel: SettingViewModel by viewModels {
+        SettingViewModelFactory((requireActivity().application as BibliumApplication).userRepository)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_setting, container, false)
+    ): View {
+        _binding = FragmentMainSettingBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainSettingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MainSettingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Botón Atrás
+        binding.ivBackSettings.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
+        // Opción Perfil
+        binding.tvOptionProfile.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main_container, ProfileFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        // Opción Tema
+        binding.tvOptionTheme.setOnClickListener {
+             parentFragmentManager.beginTransaction()
+                .replace(R.id.main_container, ThemeFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        // Opción Idioma
+        binding.tvOptionLanguage.setOnClickListener {
+             parentFragmentManager.beginTransaction()
+                .replace(R.id.main_container, LanguageFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        // Opción Cerrar Sesión
+        binding.tvLogout.setOnClickListener {
+            settingViewModel.logout()
+            Toast.makeText(requireContext(), "Sesión cerrada", Toast.LENGTH_SHORT).show()
+            
+            // Navegar al Login y limpiar el historial de fragmentos
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main_container, LoginFragment())
+                .commit()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

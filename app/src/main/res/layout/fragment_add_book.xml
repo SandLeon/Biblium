@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDFBEA"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/ivAddPhoto"
+            android:layout_width="144dp"
+            android:layout_height="197dp"
+            android:background="#E0E0E0"
+            android:scaleType="centerInside"
+            android:src="@android:drawable/ic_menu_camera"
+            app:layout_constraintBottom_toTopOf="@+id/etAddReview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTapPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/toca_para_a_adir_portada"
+            android:textColor="#888888"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/ivAddPhoto"
+            app:layout_constraintHorizontal_bias="0.588"
+            app:layout_constraintStart_toStartOf="@id/ivAddPhoto"
+            app:layout_constraintTop_toBottomOf="@id/ivAddPhoto" />
+
+        <EditText
+            android:id="@+id/etAddBookTitle"
+            android:layout_width="190dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/t_tulo"
+            android:inputType="textCapWords"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ivAddPhoto"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etAddAuthor"
+            android:layout_width="193dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/autor"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.444"
+            app:layout_constraintStart_toEndOf="@+id/ivAddPhoto"
+            app:layout_constraintTop_toBottomOf="@id/etAddBookTitle" />
+
+        <EditText
+            android:id="@+id/etAddReview"
+            android:layout_width="323dp"
+            android:layout_height="318dp"
+            android:layout_marginBottom="180dp"
+            android:background="#E0E0E0"
+            android:gravity="top|start"
+            android:hint="@string/rese_a"
+            android:inputType="textMultiLine"
+            android:padding="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="parent" />
+        <!-- Spinner restaurado aquí -->
+        <Spinner
+            android:id="@+id/spnStatus"
+            android:layout_width="190dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/etAddAuthor"
+            app:layout_constraintTop_toBottomOf="@id/etAddAuthor" />
+
+
+        <Button
+            android:id="@+id/btnCancelNewBook"
+            android:layout_width="120dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="#B8C4C0"
+            android:padding="12dp"
+            android:text="@string/cancelar"
+            android:textColor="#444444"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnSaveNewBook"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etAddReview"
+            app:layout_constraintVertical_bias="0.786" />
+
+        <Button
+            android:id="@+id/btnSaveNewBook"
+            android:layout_width="120dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="#B8C4C0"
+            android:padding="12dp"
+            android:text="@string/guardar"
+            android:textColor="#444444"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etAddReview"
+            app:layout_constraintVertical_bias="0.786" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
