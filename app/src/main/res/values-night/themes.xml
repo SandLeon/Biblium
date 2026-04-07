@@ -1,14 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme para Modo Oscuro -->
-    <style name="Base.Theme.Biblium" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Colores primarios para el modo noche -->
-        <item name="colorPrimary">#B8C4C0</item> <!-- Tu color grisáceo suave -->
-        <item name="android:windowBackground">#494848</item>
-        <item name="android:textColorPrimary">@color/black</item>
-        
-        <!-- Otros colores personalizados -->
-        <item name="colorSurface">@color/background_theme_night</item>
-        <item name="colorOnSurface">#E0E0E0</item>
+    <style name="Theme.Biblium" parent="Base.Theme.Biblium">
+        <item name="android:windowBackground">#2B2B2B</item>
+
+        <item name="colorOnSurface">#E2E2E2</item>
+        <item name="android:textColorPrimary">#E2E2E2</item>
+
+        <item name="android:textColorSecondary">#A0A0A0</item>
+
+        <item name="colorSurface">#383838</item>
+
+        <item name="colorPrimary">@color/name2</item>
+        <item name="colorOnPrimary">#2B2B2B</item>
+        <item name="colorSecondary">#D1D9D6</item>
+        <item name="colorOnSecondary">#2B2B2B</item>
+
+        <item name="android:statusBarColor">#1F1F1F</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
-    <style name="Theme.Biblium" parent="Base.Theme.Biblium" />
 </resources>

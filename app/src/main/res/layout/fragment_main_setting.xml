@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_theme_light"
+    android:background="?android:attr/windowBackground"
     tools:context=".ui.fragments.settings.MainSettingFragment">
 
     <ImageView
@@ -15,6 +15,7 @@
         android:layout_marginEnd="20dp"
         android:padding="8dp"
         android:src="@drawable/arrow_back"
+        app:tint="?attr/colorOnSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +26,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="60dp"
         android:text="@string/ajustes"
-        android:textColor="#292120"
         android:textSize="36sp"
         android:fontFamily="sans-serif-light"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,8 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="24dp"
-        android:background="#D1C4E9"
+        android:background="?attr/colorSecondary"
+        android:alpha="0.3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSettingsHeader" />
@@ -57,7 +58,6 @@
             android:layout_height="wrap_content"
             android:paddingVertical="16dp"
             android:text="Perfil"
-            android:textColor="#292120"
             android:textSize="20sp" />
 
         <TextView
@@ -67,7 +67,6 @@
             android:layout_marginTop="16dp"
             android:paddingVertical="16dp"
             android:text="Tema"
-            android:textColor="#292120"
             android:textSize="20sp" />
 
         <TextView
@@ -77,7 +76,6 @@
             android:layout_marginTop="16dp"
             android:paddingVertical="16dp"
             android:text="Idioma"
-            android:textColor="#292120"
             android:textSize="20sp" />
 
         <TextView
@@ -87,7 +85,6 @@
             android:layout_marginTop="16dp"
             android:paddingVertical="16dp"
             android:text="Cerrar Sesion"
-            android:textColor="#292120"
             android:textSize="20sp" />
 
     </LinearLayout>

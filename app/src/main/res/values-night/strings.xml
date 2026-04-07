@@ -34,4 +34,6 @@
     <string name="email">email</string>
     <string name="ajustes">Ajustes</string>
     <string name="eliminar">Eliminar</string>
+    <string name="proximamente">Proximamente</string>
+    <string name="idioma">Idioma</string>
 </resources>

@@ -11,7 +11,7 @@ import com.sleon.biblium.utils.SecurityUtils
 
 class UserRepository(
     private val userDao: UserDao,
-    private val settingDao: SettingDao
+    //private val settingDao: SettingDao
 ) {
 
     // Estado global del usuario logueado en la sesión actual
@@ -29,18 +29,8 @@ class UserRepository(
             passwordHash = passwordHash,
             salt = salt
         )
-        
         val userId = userDao.registerUser(user)
-
-        val defaultSettings = AppSettingEntity(
-            userId = userId,
-            theme = 0,
-            language = "es",
-            isDarkMode = false,
-            notificationsEnabled = true
-        )
-        settingDao.insertOrUpdateSettings(defaultSettings)
-
+        _currentUser.value = user.copy(userId = userId)
         return userId
     }
 
@@ -54,9 +44,18 @@ class UserRepository(
         }
     }
 
-    /**
-     * Finaliza la sesión actual.
-     */
+    suspend fun updateUser(user: UserEntity): Boolean {
+        return try {
+            userDao.updateUser(user)
+            if (_currentUser.value?.userId == user.userId) {
+                _currentUser.value = user
+            }
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
     fun logoutUser() {
         _currentUser.value = null
     }
@@ -67,27 +66,5 @@ class UserRepository(
 
     suspend fun getUserById(id: Long): UserEntity? {
         return userDao.getUserById(id)
-    }
-
-    suspend fun updateUser(user: UserEntity) {
-        userDao.updateUser(user)
-        // Si el usuario actualizado es el actual, refrescamos la sesión
-        if (_currentUser.value?.userId == user.userId) {
-            _currentUser.value = user
-        }
-    }
-
-    // --- Operaciones de Ajustes con FLOW ---
-
-    fun getSettings(userId: Long): Flow<AppSettingEntity?> {
-        return settingDao.getSettingsByUserId(userId)
-    }
-
-    suspend fun getSettingsSync(userId: Long): AppSettingEntity? {
-        return settingDao.getSettingsByUserIdSync(userId)
-    }
-
-    suspend fun saveSettings(settings: AppSettingEntity) {
-        settingDao.insertOrUpdateSettings(settings)
     }
 }

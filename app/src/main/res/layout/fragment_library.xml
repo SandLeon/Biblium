@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_theme_light"
+    android:background="?android:attr/windowBackground"
     tools:context=".ui.fragments.library.LibraryFragment">
 
     <ImageView
@@ -15,6 +15,7 @@
         android:layout_marginEnd="8dp"
         android:padding="8dp"
         android:src="@drawable/arrow_back"
+        app:tint="?attr/colorOnSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,13 +26,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:text="@string/mi_biblioteca"
-        android:textColor="#444444"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Buscador similar al de Home -->
     <EditText
         android:id="@+id/etSearchLibrary"
         android:layout_width="0dp"
@@ -48,8 +47,7 @@
         android:maxLines="1"
         android:paddingHorizontal="16dp"
         android:singleLine="true"
-        android:textColor="#292120"
-        android:textColorHint="#9E9E9E"
+        android:textColorHint="?attr/colorOnSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvLibraryTitle" />
@@ -72,9 +70,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No se han encontrado libros"
-        android:textColor="#888888"
         android:textSize="16sp"
         android:visibility="gone"
+        android:alpha="0.6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,9 +86,10 @@
         android:layout_marginBottom="24dp"
         android:src="@android:drawable/ic_input_add"
         android:contentDescription="@string/a_adir_libro"
-        app:backgroundTint="#B8C4C0"
+        app:backgroundTint="?attr/colorSecondary"
+        app:tint="?attr/colorOnSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="#444444" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

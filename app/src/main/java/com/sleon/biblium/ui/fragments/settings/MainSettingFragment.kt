@@ -20,7 +20,8 @@ class MainSettingFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val settingViewModel: SettingViewModel by viewModels {
-        SettingViewModelFactory((requireActivity().application as BibliumApplication).userRepository)
+        val app = requireActivity().application as BibliumApplication
+        SettingViewModelFactory(app.userRepository, app.settingRepository)
     }
 
     override fun onCreateView(

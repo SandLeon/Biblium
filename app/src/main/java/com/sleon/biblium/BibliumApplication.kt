@@ -12,7 +12,7 @@ class BibliumApplication : Application() {
     val database by lazy { AppDatabase.getDatabase(this) }
 
     // Instancias de los repositorios
-    val userRepository by lazy { UserRepository(database.userDao(), database.settingDao()) }
+    val userRepository by lazy { UserRepository(database.userDao()) }
     val bookRepository by lazy { BookRepository(database.bookDao()) }
     val settingRepository by lazy { SettingRepository(database.settingDao()) }
 

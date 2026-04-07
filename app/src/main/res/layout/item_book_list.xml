@@ -7,7 +7,8 @@
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="?attr/colorSurface">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,7 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textColor="#2C3E50"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="#607D8B"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tvBookTitleList"
@@ -56,10 +57,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_search_bar"
-            android:backgroundTint="#D1D9E6"
+            android:backgroundTint="?attr/colorSecondary"
             android:paddingHorizontal="8dp"
             android:paddingVertical="2dp"
-            android:textColor="#455A64"
+            android:textColor="?attr/colorOnSecondary"
             android:textSize="11sp"
             app:layout_constraintStart_toStartOf="@id/tvBookAuthorList"
             app:layout_constraintTop_toBottomOf="@id/tvBookAuthorList"

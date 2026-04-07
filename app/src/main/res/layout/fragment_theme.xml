@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_theme_light"
+    android:background="?android:attr/windowBackground"
     android:padding="24dp">
 
     <ImageView
@@ -12,6 +12,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:padding="8dp"
+        app:tint="?attr/colorOnSurface"
         android:src="@drawable/arrow_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Tema"
-        android:textColor="#292120"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,8 +41,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:text="Tema Claro"
-            android:textSize="18sp"
-            android:textColor="#292120" />
+            android:textSize="18sp" />
 
         <RadioButton
             android:id="@+id/rbDarkTheme"
@@ -52,7 +51,7 @@
             android:padding="16dp"
             android:text="Tema Oscuro"
             android:textSize="18sp"
-            android:textColor="#292120" />
+             />
 
     </RadioGroup>
 
@@ -61,9 +60,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:backgroundTint="#B8C4C0"
+        android:backgroundTint="?attr/colorSecondary"
         android:text="Aplicar Tema"
-        android:textColor="#444444"
+        android:textColor="?attr/colorOnSecondary"
         app:layout_constraintTop_toBottomOf="@id/rgTheme" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

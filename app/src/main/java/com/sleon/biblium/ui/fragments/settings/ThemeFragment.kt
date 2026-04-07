@@ -22,7 +22,8 @@ class ThemeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val settingViewModel: SettingViewModel by viewModels {
-        SettingViewModelFactory((requireActivity().application as BibliumApplication).userRepository)
+        val app = requireActivity().application as BibliumApplication
+        SettingViewModelFactory(app.userRepository, app.settingRepository)
     }
 
     override fun onCreateView(
@@ -36,9 +37,7 @@ class ThemeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Cargar el tema actual del usuario
-        loadCurrentTheme()
-
+        observeSettings()
         binding.ivBackTheme.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
@@ -48,21 +47,22 @@ class ThemeFragment : Fragment() {
         }
     }
 
-    private fun loadCurrentTheme() {
-        val app = requireActivity().application as BibliumApplication
-        lifecycleScope.launch {
-            val user = app.userRepository.currentUser.first()
-            user?.let {
-                val settings = app.userRepository.getSettingsSync(it.userId)
-                settings?.let { s ->
-                    if (s.isDarkMode) {
-                        binding.rbDarkTheme.isChecked = true
-                    } else {
-                        binding.rbLightTheme.isChecked = true
-                    }
+
+    private fun observeSettings() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            // Escuchamos al ViewModel, no al Repositorio
+            settingViewModel.settings.collect { settings ->
+                settings?.let {
+                    // Actualizamos la UI según el estado que emita el Flow
+                    binding.rbDarkTheme.isChecked = it.isDarkMode
+                    binding.rbLightTheme.isChecked = !it.isDarkMode
                 }
             }
         }
+
+        // Le pedimos al ViewModel que empiece a cargar los datos
+        val userId = settingViewModel.currentUser.value?.userId
+        userId?.let { settingViewModel.loadUserData(it) }
     }
 
     private fun applyAndSaveTheme() {
@@ -72,17 +72,16 @@ class ThemeFragment : Fragment() {
         lifecycleScope.launch {
             val user = app.userRepository.currentUser.first()
             user?.let { u ->
-                val currentSettings = app.userRepository.getSettingsSync(u.userId)
+                val currentSettings = settingViewModel.settings.value
+
                 currentSettings?.let { s ->
                     val updatedSettings = s.copy(isDarkMode = isDarkMode, theme = if (isDarkMode) 1 else 0)
                     settingViewModel.saveSettings(updatedSettings)
 
                     // Aplicar el cambio visualmente en toda la app
-                    if (isDarkMode) {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    } else {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    }
+                    val mode = if (isDarkMode) AppCompatDelegate.MODE_NIGHT_YES
+                    else AppCompatDelegate.MODE_NIGHT_NO
+                    AppCompatDelegate.setDefaultNightMode(mode)
 
                     Toast.makeText(requireContext(), "Tema aplicado", Toast.LENGTH_SHORT).show()
                     parentFragmentManager.popBackStack()

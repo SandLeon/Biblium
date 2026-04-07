@@ -14,17 +14,16 @@ class SettingRepository(private val settingDao: SettingDao) {
         return settingDao.getSettingsByUserId(userId)
     }
 
-    /**
-     * Obtiene los ajustes de forma síncrona (suspend).
-     * Útil para comprobaciones puntuales antes de cargar una pantalla.
-     */
+
+     //Obtiene los ajustes de forma síncrona (suspend).
+    //Útil para comprobaciones puntuales antes de cargar una pantalla.
+
     suspend fun getSettingsSync(userId: Long): AppSettingEntity? {
         return settingDao.getSettingsByUserIdSync(userId)
     }
 
-    /**
-     * Guarda o actualiza los ajustes del usuario.
-     */
+     // Guarda o actualiza los ajustes del usuario.
+
     suspend fun saveSettings(settings: AppSettingEntity) {
         settingDao.insertOrUpdateSettings(settings)
     }

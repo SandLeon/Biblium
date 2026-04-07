@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FDFBEA">
-
+    android:background="?android:attr/windowBackground">
     <ImageView
         android:id="@+id/ivBackProfileResume"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="4dp"
         android:padding="8dp"
+        app:tint="?attr/colorOnSurface"
         android:src="@drawable/arrow_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.955"
@@ -25,7 +25,6 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:text="@string/resumen"
-        android:textColor="#444444"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +37,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/color_celeste"
+        android:background="?attr/colorSurface"
         android:gravity="top|start"
         android:hint=""
         android:inputType="textMultiLine"
@@ -55,9 +54,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginBottom="40dp"
-        android:backgroundTint="#B8C4C0"
+        android:backgroundTint="?attr/colorSecondary"
         android:text="@string/eliminar"
-        android:textColor="#444444"
+        android:textColor="?attr/colorOnSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -67,9 +66,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="40dp"
-        android:backgroundTint="#B8C4C0"
+        android:backgroundTint="?attr/colorSecondary"
         android:text="@string/guardar"
-        android:textColor="#444444"
+        android:textColor="?attr/colorOnSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

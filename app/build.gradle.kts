@@ -50,6 +50,8 @@ dependencies {
     // NAVEGACIÓN
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.jupiter)
 
     // ROOM (Base de Datos) - Versión 2.7.0 es más estable para SDK 36
     val room_version = "2.7.0"

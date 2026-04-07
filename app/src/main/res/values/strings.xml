@@ -12,7 +12,6 @@
     <string name="contrase_a">Contraseña</string>
     <string name="entrar">Entrar</string>
     <string name="contrase_a_olvidada">¿Contraseña olvidada?</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nombre_usuario">Nombre Usuario</string>
     <string name="boton_setting">Abrir ajustes</string>
     <string name="logoBiblium">logo Biblium</string>
@@ -20,8 +19,8 @@
     <string name="btn_filtrar">Filtrar</string>
     <string name="btn_lista">Cambiar a lista</string>
     <string name="a_adir_libro">Añadir libro</string>
-    <string name="resumen">resumen</string>
-    <string name="name">Name</string>
+    <string name="resumen">Resumen</string>
+    <string name="name">Nombre</string>
     <string name="registrar">Registrar</string>
     <string name="rese_a">Reseña</string>
     <string name="cancelar">Cancelar</string>
@@ -30,7 +29,9 @@
     <string name="t_tulo">Título</string>
     <string name="toca_para_a_adir_portada">Toca para añadir portada</string>
     <string name="registrarse">Registrarse</string>
-    <string name="email">email</string>
+    <string name="email">Email</string>
     <string name="ajustes">Ajustes</string>
     <string name="eliminar">Eliminar</string>
+    <string name="proximamente">Proximamente</string>
+    <string name="idioma">Idioma</string>
 </resources>

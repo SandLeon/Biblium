@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_theme_light"
+    android:background="?android:attr/windowBackground"
     android:padding="24dp">
 
     <ImageView
@@ -13,6 +13,7 @@
         android:layout_height="48dp"
         android:padding="8dp"
         android:src="@drawable/arrow_back"
+        app:tint="?attr/colorOnSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Perfil"
-        android:textColor="#292120"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,9 +69,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:backgroundTint="#B8C4C0"
+        android:backgroundTint="?attr/colorSecondary"
         android:text="Guardar Cambios"
-        android:textColor="#444444"
+        android:textColor="?attr/colorOnSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilProfileEmail" />

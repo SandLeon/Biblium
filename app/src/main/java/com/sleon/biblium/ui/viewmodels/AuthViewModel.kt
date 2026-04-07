@@ -1,5 +1,6 @@
 package com.sleon.biblium.ui.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -15,8 +16,8 @@ import kotlinx.coroutines.launch
 class AuthViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     // Estado del usuario actual
-    private val _currentUser = MutableStateFlow<UserEntity?>(null)
-    val currentUser: StateFlow<UserEntity?> = _currentUser
+    val currentUser: StateFlow<UserEntity?> = userRepository.currentUser
+
 
     // Estado del proceso de login (null: inicial, true: éxito, false: error)
     private val _authStatus = MutableStateFlow<Boolean?>(null)
@@ -27,11 +28,11 @@ class AuthViewModel(private val userRepository: UserRepository) : ViewModel() {
      */
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            val user = userRepository.loginUser(email, password)
-            if (user != null) {
-                _currentUser.value = user
-                _authStatus.value = true
-            } else {
+            try {
+                val user = userRepository.loginUser(email, password)
+                _authStatus.value = user != null
+            } catch (e: Exception) {
+                Log.e("AUTH_ERROR", "Error crítico en login", e)
                 _authStatus.value = false
             }
         }
@@ -44,10 +45,14 @@ class AuthViewModel(private val userRepository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             try {
                 val id = userRepository.registerUser(name, email, password)
-                if (id != -1L) {
-                    login(email, password)
+                // Si el ID es mayor que 0, el registro fue exitoso
+                if (id > 0) {
+                    _authStatus.value = true
+                } else {
+                    _authStatus.value = false
                 }
             } catch (e: Exception) {
+                // Capturamos errores como email ya existente
                 _authStatus.value = false
             }
         }

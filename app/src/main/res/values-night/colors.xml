@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#222020</color>
+    <color name="background_theme_light">#2B2B2B</color>
+    <color name="biblium_background">#1F1F1F</color>
+    <color name="name2">#55BF9A</color>
+    <color name="color_celeste">#4A5A5A</color>
+    <color name="text_input_login">#BBC6C5</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="biblium_background">#2D2929</color>
-    <color name="color_fondo_principal">#FFFFFFFF</color>
-    <color name="color_celeste">#4D8EA6A0</color>
-    <color name="name">#8D4D5F57</color>
-    <color name="name2">#B992BDB8</color>
-    <color name="text_input_login">#888888</color>
-    <color name="glow_base">#1A000000</color>
-    <color name="glow_mid">#33000000</color>
-    <color name="glow_core">#4D000000</color>
-    <color name="background_theme_night">#524E4E</color>
+    <color name="black">#FFFFFF</color>
+    <color name="glow_base">#0DFFFFFF</color>
+    <color name="glow_mid">#1AFFFFFF</color>
+    <color name="glow_core">#26FFFFFF</color>
 </resources>

@@ -21,9 +21,9 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val settingViewModel: SettingViewModel by viewModels {
-        SettingViewModelFactory((requireActivity().application as BibliumApplication).userRepository)
+        val app = requireActivity().application as BibliumApplication
+        SettingViewModelFactory(app.userRepository, app.settingRepository)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,21 +35,22 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Cargar datos del usuario actual
-        loadUserData()
+        // Observar datos del usuario (REACTIVO)
+        observeUserData()
+        // Observar el éxito del guardado para cerrar la pantalla
+        observeUpdateStatus()
 
         // 2. Botón Atrás
         binding.ivBackProfile.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-
         // 3. Botón Guardar Cambios
         binding.btnSaveProfile.setOnClickListener {
             saveChanges()
         }
     }
 
-    private fun loadUserData() {
+   /* private fun loadUserData() {
         val app = requireActivity().application as BibliumApplication
         lifecycleScope.launch {
             val user = app.userRepository.currentUser.first()
@@ -58,8 +59,34 @@ class ProfileFragment : Fragment() {
                 binding.etProfileEmail.setText(it.email)
             }
         }
+    }*/
+    private fun observeUserData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            // llamamos al ViewModel
+            settingViewModel.currentUser.collect { user ->
+                user?.let {
+                    // Esto se ejecuta la primera vez
+                    // Y CUALQUIER OTRA VEZ que el usuario cambie en la sesión.
+                    if (binding.etProfileName.text.toString().isBlank()) {
+                        binding.etProfileName.setText(it.name)
+                        binding.etProfileEmail.setText(it.email)
+                    }
+                }
+            }
+        }
     }
 
+    private fun observeUpdateStatus() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            settingViewModel.updateSuccess.collect { success ->
+                if (success == true) {
+                    // Room ya terminó de escribir y el Repositorio ya se actualizó
+                    Toast.makeText(requireContext(), "Perfil actualizado correctamente", Toast.LENGTH_SHORT).show()
+                    parentFragmentManager.popBackStack()
+                }
+            }
+        }
+    }
     private fun saveChanges() {
         val newName = binding.etProfileName.text.toString().trim()
         val newEmail = binding.etProfileEmail.text.toString().trim()
@@ -68,17 +95,12 @@ class ProfileFragment : Fragment() {
             Toast.makeText(requireContext(), "Los campos no pueden estar vacíos", Toast.LENGTH_SHORT).show()
             return
         }
-
-        val app = requireActivity().application as BibliumApplication
-        lifecycleScope.launch {
-            val user = app.userRepository.currentUser.first()
-            user?.let {
-                val updatedUser = it.copy(name = newName, email = newEmail)
-                settingViewModel.updateProfile(updatedUser)
-
-                Toast.makeText(requireContext(), "Perfil actualizado correctamente", Toast.LENGTH_SHORT).show()
-                parentFragmentManager.popBackStack()
-            }
+        // Obtenemos el usuario actual del flujo del ViewModel
+        val user = settingViewModel.currentUser.value
+        user?.let {
+            val updatedUser = it.copy(name = newName, email = newEmail)
+            // Solo lanzamos la orden. El observador 'observeUpdateStatus' se encargará del resto.
+            settingViewModel.updateProfile(updatedUser)
         }
     }
 
