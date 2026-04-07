@@ -6,9 +6,6 @@ import org.junit.Test
 
 class BookValidatorTest {
 
-    // Usamos nombres de funciones entre comillas invertidas (backticks)
-    // para que se lean como frases. ¡Es mucho más profesional!
-
     @Test
     fun `cuando el titulo esta vacio debe devolver falso`() {
         val resultado = BookValidator.isBookValid("", "Melissa Landers")
