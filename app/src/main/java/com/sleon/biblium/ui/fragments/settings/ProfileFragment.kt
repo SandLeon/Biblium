@@ -50,16 +50,6 @@ class ProfileFragment : Fragment() {
         }
     }
 
-   /* private fun loadUserData() {
-        val app = requireActivity().application as BibliumApplication
-        lifecycleScope.launch {
-            val user = app.userRepository.currentUser.first()
-            user?.let {
-                binding.etProfileName.setText(it.name)
-                binding.etProfileEmail.setText(it.email)
-            }
-        }
-    }*/
     private fun observeUserData() {
         viewLifecycleOwner.lifecycleScope.launch {
             // llamamos al ViewModel
