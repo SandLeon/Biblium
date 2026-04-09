@@ -50,7 +50,6 @@ class ThemeFragment : Fragment() {
 
     private fun observeSettings() {
         viewLifecycleOwner.lifecycleScope.launch {
-            // Escuchamos al ViewModel, no al Repositorio
             settingViewModel.settings.collect { settings ->
                 settings?.let {
                     // Actualizamos la UI según el estado que emita el Flow
@@ -60,7 +59,7 @@ class ThemeFragment : Fragment() {
             }
         }
 
-        // Le pedimos al ViewModel que empiece a cargar los datos
+        //  ViewModel  empieca a cargar los datos
         val userId = settingViewModel.currentUser.value?.userId
         userId?.let { settingViewModel.loadUserData(it) }
     }

@@ -10,8 +10,7 @@ class Converters {
     fun fromBitmap(bitmap: Bitmap?): ByteArray? {
         if (bitmap == null) return null
         val outputStream = ByteArrayOutputStream()
-        // Reducimos la calidad al 70% y usamos JPEG para evitar que el tamaño del BLOB 
-        // supere el límite de CursorWindow (2MB) que suele causar cierres inesperados.
+        // Reducimos la calidad al 70% y usamos JPEG para evitar que el tamaño del BLOB
         bitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStream)
         return outputStream.toByteArray()
     }

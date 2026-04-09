@@ -79,7 +79,7 @@ class LibraryFragment : Fragment() {
             }
         }
 
-        // 3. Barra de búsqueda (Misma funcionalidad que Home)
+        // 3. Barra de búsqueda
         binding.etSearchLibrary.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -88,7 +88,7 @@ class LibraryFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        // 4. Acción del botón añadir
+        // Acción del botón añadir
         binding.fabAddBook.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.main_container, AddBookFragment())
@@ -96,7 +96,7 @@ class LibraryFragment : Fragment() {
                 .commit()
         }
 
-        // 5. OBTENER EL USUARIO REAL Y CARGAR SUS LIBROS
+        //OBTENER EL USUARIO REAL Y CARGAR SUS LIBROS
         viewLifecycleOwner.lifecycleScope.launch {
             app.userRepository.currentUser.collect { user ->
                 user?.let {

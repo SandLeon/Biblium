@@ -10,7 +10,7 @@ import com.sleon.biblium.models.Book
 
 class BookAdapter(
     private val bookList: List<Book>,
-    private val isListView: Boolean = false, // Nuevo parámetro para saber qué diseño usar
+    private val isListView: Boolean = false,
     private val onClickListener: (Book) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

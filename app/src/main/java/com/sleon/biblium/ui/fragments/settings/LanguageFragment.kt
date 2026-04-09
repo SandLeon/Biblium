@@ -9,7 +9,7 @@ import com.sleon.biblium.databinding.FragmentLanguageBinding
 
 class LanguageFragment : Fragment() {
 
-    // 1. Configuramos ViewBinding
+
     private var _binding: FragmentLanguageBinding? = null
     private val binding get() = _binding!!
 

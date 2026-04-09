@@ -14,7 +14,7 @@ import com.sleon.biblium.data.entities.UserEntity
 
 @Database(
     entities = [UserEntity::class, BookEntity::class, AppSettingEntity::class],
-    version = 3, // Incrementado a 3 para forzar la recreación tras el cambio de esquema
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

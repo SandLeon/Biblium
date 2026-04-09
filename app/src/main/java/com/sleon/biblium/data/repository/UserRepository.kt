@@ -11,15 +11,13 @@ import com.sleon.biblium.utils.SecurityUtils
 
 class UserRepository(
     private val userDao: UserDao,
-    //private val settingDao: SettingDao
-) {
 
+) {
     // Estado global del usuario logueado en la sesión actual
     private val _currentUser = MutableStateFlow<UserEntity?>(null)
     val currentUser: StateFlow<UserEntity?> = _currentUser
 
-    // --- Operaciones de Usuario ---
-
+    // Operaciones de Usuario
     suspend fun registerUser(name: String, email: String, password: String): Long {
         val salt = SecurityUtils.generateSalt()
         val passwordHash = SecurityUtils.hashPassword(password, salt)
@@ -37,7 +35,7 @@ class UserRepository(
     suspend fun loginUser(email: String, password: String): UserEntity? {
         val user = userDao.getUserByEmail(email)
         return if (user != null && SecurityUtils.verifyPassword(password, user.salt, user.passwordHash)) {
-            _currentUser.value = user // Guardamos al usuario en la sesión actual
+            _currentUser.value = user
             user
         } else {
             null

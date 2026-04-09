@@ -52,7 +52,6 @@ class ProfileFragment : Fragment() {
 
     private fun observeUserData() {
         viewLifecycleOwner.lifecycleScope.launch {
-            // llamamos al ViewModel
             settingViewModel.currentUser.collect { user ->
                 user?.let {
                     // Esto se ejecuta la primera vez
@@ -70,7 +69,6 @@ class ProfileFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             settingViewModel.updateSuccess.collect { success ->
                 if (success == true) {
-                    // Room ya terminó de escribir y el Repositorio ya se actualizó
                     Toast.makeText(requireContext(), "Perfil actualizado correctamente", Toast.LENGTH_SHORT).show()
                     parentFragmentManager.popBackStack()
                 }

@@ -40,7 +40,6 @@ class RegisterFragment : Fragment() {
         observeAuthStatus()
 
         binding.btnRegister.setOnClickListener {
-            // Asegúrate de que estos IDs coincidan con tu fragment_register.xml
             val name = binding.etrUserName.text.toString().trim()
             val email = binding.etrEmail.text.toString().trim()
             val password = binding.etrPassword.text.toString().trim()
@@ -59,7 +58,6 @@ class RegisterFragment : Fragment() {
                 when (success) {
                     true -> {
                         Toast.makeText(requireContext(), "¡Registro completado!", Toast.LENGTH_SHORT).show()
-                        // Navegar al Home al registrarse con éxito
                         parentFragmentManager.beginTransaction()
                             .replace(R.id.main_container, HomeFragment())
                             .commit()

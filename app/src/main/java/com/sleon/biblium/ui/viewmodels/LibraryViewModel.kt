@@ -34,7 +34,7 @@ class LibraryViewModel(private val repository: BookRepository) : ViewModel() {
                         author = entity.author,
                         status = entity.status,
                         coverImage = entity.coverImage,
-                        review = entity.review // Mapeamos la reseña desde la base de datos
+                        review = entity.review
                     )
                 }
                 _allBooks.value = domainBooks
